@@ -11,7 +11,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
     <GlobalStyles />
-    <ToastContainer auclose={2000} theme='colored' icon={true} /> 
+    <ToastContainer autoclose={2000} theme='colored' icon={true} /> 
   </StrictMode>,
 
 );

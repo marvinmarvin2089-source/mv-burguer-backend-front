@@ -1,53 +1,51 @@
 import { useEffect, useState } from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 import { Navigation } from 'swiper/modules';
 
 import 'swiper/css';
-
 import 'swiper/css/navigation';
 
+import { useNavigate } from 'react-router-dom';
 import { api } from '../../services/api';
 
 import {
+    CategoryButton,
     Container,
     ContainerItems,
     Title
 } from './styles';
 
-export function CategoriesCarousel() {
 
+export function CategoriesCarousel() {
     const [categories, setCategories] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
-
         async function loadCategories() {
-
             const { data } = await api.get('/categories');
-
-            console.log(data);
 
             setCategories(data);
         }
 
         loadCategories();
-
     }, []);
+
+    const categoriesForCarousel =
+        categories.length === 4
+            ? [...categories, ...categories]
+            : categories;
 
     return (
         <Container>
-
-            <Title>
-                Categorias
-            </Title>
+            <Title>Categorias</Title>
 
             <Swiper
+                key={categories.length}
                 modules={[Navigation]}
                 navigation
                 spaceBetween={20}
-                slidesPerView={4}
-                loop={true}
+                loop={categories.length > 1}
                 breakpoints={{
                     0: {
                         slidesPerView: 1,
@@ -62,30 +60,31 @@ export function CategoriesCarousel() {
                     },
                 }}
             >
-
-                {categories.map((category) => (
-
-                    <SwiperSlide key={category.id}>
-
+                {categoriesForCarousel.map((category, index) => (
+                    <SwiperSlide
+                        key={`${category.id}-${index}`}
+                    >
                         <ContainerItems>
-
                             <img
-                                src={`http://localhost:3001/category-files/${category.path}`}
+                                src={category.url}
                                 alt={category.name}
                             />
-
-                            <p>
-                                {category.name}
-                            </p>
-
+                            <CategoryButton
+                            
+                            onClick={() => {
+                                navigate(
+                                    {
+                                        pathname: '/cardapio',
+                                        search: `?categoria=${category.id}`,
+                                    });
+                            }}
+                            
+                            >{category.name}</CategoryButton>
+                            
                         </ContainerItems>
-
                     </SwiperSlide>
-
                 ))}
-
             </Swiper>
-
         </Container>
     );
 }

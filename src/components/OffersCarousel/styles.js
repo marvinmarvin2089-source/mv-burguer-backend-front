@@ -1,15 +1,15 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
-    padding-left: 40px;
-    padding-bottom: 40px;
+    padding: 0 40px 40px;
+    overflow: hidden;
 
     .swiper {
-        overflow: visible;
+        width: 100%;
+        overflow: hidden;
     }
 
     .swiper-slide {
-        width: 260px !important;
         height: auto;
     }
 `;

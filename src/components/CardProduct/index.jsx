@@ -4,6 +4,7 @@ import { Container, CardImage } from './styles';
 
 import { CartButton } from '../CartButton';
 
+
 export function CardProduct({ product }) {
 
     return (
@@ -18,7 +19,7 @@ export function CardProduct({ product }) {
                 <p>{product.name}</p>
 
                 <strong>
-                    R$ {product.price}
+                     {product.currencyValue}
                 </strong>
             </div>
 

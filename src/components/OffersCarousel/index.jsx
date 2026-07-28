@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 import { Navigation } from 'swiper/modules';
 
 import 'swiper/css';
-
 import 'swiper/css/navigation';
+
+import { formatPrice } from '../../utils/formatPrace';
 
 import { api } from '../../services/api';
 
@@ -15,39 +15,32 @@ import { Container, Title } from './styles';
 import { CardProduct } from '../CardProduct';
 
 export function OffersCarousel() {
-
     const [offers, setOffers] = useState([]);
 
     useEffect(() => {
-
         async function loadProducts() {
-
             const { data } = await api.get('/products');
 
-            const offers = data.filter(product => product.offer === true);
+            const productsOnOffer = data.filter(
+                product => product.offer === true
+            ).map(product => ({currencyValue: formatPrice(product.price), ...product}));
 
-            setOffers(offers);
+            setOffers(productsOnOffer);
         }
 
         loadProducts();
-
     }, []);
 
     return (
         <Container>
-
-            <Title>
-                Ofertas do Dia
-            </Title>
+            <Title>Ofertas do Dia</Title>
 
             <Swiper
+                key={offers.length}
                 modules={[Navigation]}
                 navigation
                 spaceBetween={20}
-                slidesPerView={'auto'}
-                slidesOffsetBefore={20}
-                slidesOffsetAfter={20}
-                loop={true}
+                loop={offers.length > 4}
                 breakpoints={{
                     0: {
                         slidesPerView: 1,
@@ -62,19 +55,12 @@ export function OffersCarousel() {
                     },
                 }}
             >
-
-                {offers.map((product) => (
-
+                {offers.map(product => (
                     <SwiperSlide key={product.id}>
-
                         <CardProduct product={product} />
-
                     </SwiperSlide>
-
                 ))}
-                
             </Swiper>
-
         </Container>
     );
 }

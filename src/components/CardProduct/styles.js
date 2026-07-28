@@ -11,7 +11,7 @@ export const Container = styled.div`
 
     padding: 20px;
 
-    padding-top: 80px;
+    padding-top: 120px;
 
     position: relative;
 
@@ -22,6 +22,7 @@ export const Container = styled.div`
     cursor: grab;
 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 
     div {
         width: 100%;
@@ -55,11 +56,12 @@ export const Container = styled.div`
 
 export const CardImage = styled.img`
     width: 140px;
+    height: 110px;
+    object-fit: contain;
 
     position: absolute;
 
-    top: -50px;
-
+    top: 10px;
     left: 50%;
 
     transform: translateX(-50%);

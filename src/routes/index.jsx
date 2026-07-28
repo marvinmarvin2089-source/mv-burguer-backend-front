@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Login } from '../containers/Login';
 import { Register } from '../containers/Register';
 import { Home } from '../containers/Home';
+import { Menu } from '../containers/Menu';
 
 export const router = createBrowserRouter([
     {
@@ -19,5 +20,9 @@ export const router = createBrowserRouter([
         element: <Register />,
     },
 
+     {
+        path: '/Cardapio',
+        element: <Menu />,
+    },
 
 ]);

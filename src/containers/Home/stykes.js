@@ -27,10 +27,7 @@ export const Container = styled.section`
     ),
     url('${Backgrond}');
     
-    
-
-
-    `;
+     `;
 
 export const Content = styled.div`
 padding-bottom: 70px;
