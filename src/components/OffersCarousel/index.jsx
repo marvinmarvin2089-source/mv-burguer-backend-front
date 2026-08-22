@@ -6,7 +6,7 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-import { formatPrice } from '../../utils/formatPrace';
+import { formatPrice } from '../../utils/formatPrice';
 
 import { api } from '../../services/api';
 

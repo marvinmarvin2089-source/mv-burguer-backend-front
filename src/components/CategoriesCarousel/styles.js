@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -11,7 +10,7 @@ export const Title = styled.h2`
     margin-bottom: 20px;
     font-size: 24px;
     font-weight: bold;
-    color: #9758a6;
+    color: ${(props) => props.theme.purple};
     padding-bottom: 12px;
     position: relative;
     text-align: center;
@@ -24,7 +23,7 @@ export const Title = styled.h2`
         transform: translateX(-50%);
         width: 50px;
         height: 3px;
-        background-color: #9758a6;
+        background-color: ${(props) => props.theme.purple};
     }
    
 `;
@@ -52,8 +51,10 @@ export const ContainerItems = styled.div`
 
 `;
 
-export const CategoryButton = styled(Link)`
-position: absolute;
+export const CategoryButton = styled.button`
+        border: 0;
+        font-family: inherit;
+        position: absolute;
         left: 20px;
         bottom: 20px;
 

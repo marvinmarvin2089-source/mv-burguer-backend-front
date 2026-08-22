@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Backgrond from '../../assets/bg.svg';
+import Background from '../../assets/bg.svg';
 import BannerHome from '../../assets/banner-home.svg';
 
 export const Banner = styled.div`
@@ -11,7 +11,7 @@ export const Banner = styled.div`
     h1 {
         font-family: 'Road Rage', sans-serif;
         font-size: 80px;
-        color: #f4f4f4;
+        color: ${(props) => props.theme.darkWhite};
         position: absolute;
         right: 20%;
         top: 10%;
@@ -25,7 +25,7 @@ export const Container = styled.section`
         rgba(255, 255, 255, 0.6),
         rgba(255, 255, 255, 0.6)
     ),
-    url('${Backgrond}');
+    url('${Background}');
     
      `;
 

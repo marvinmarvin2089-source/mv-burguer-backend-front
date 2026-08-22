@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ContainerButton = styled.button`
-    background-color: #9758a6;
+    background-color: ${(props) => props.theme.purple};
 
     width: 100%;
     height: 52px;
@@ -16,7 +16,7 @@ export const ContainerButton = styled.button`
     cursor: pointer;
 
     &:hover {
-        background-color: #6f357c;
+        background-color: ${(props) => props.theme.secondDarkPurple};
     }
 
     img {

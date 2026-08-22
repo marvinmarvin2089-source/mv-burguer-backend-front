@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
-import { formatPrice } from '../../utils/formatPrace';
+import { formatPrice } from '../../utils/formatPrice';
 import { CardProduct } from '../../components/CardProduct';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -48,7 +48,11 @@ export function Menu() {
       const { data } = await api.get('/products');
 
       const newProducts = data
-        .map(product => ({ currencyValue: formatPrice(product.price), ...product }));
+        .map(product => ({
+          currencyValue: formatPrice(product.price),
+          ...product,
+          category_id: Number(product.category_id),
+        }));
 
       setProducts(newProducts);
     }
@@ -58,6 +62,12 @@ export function Menu() {
     loadProducts();
 
   }, []);
+
+  useEffect(() => {
+    const categoryId = Number(new URLSearchParams(search).get('categoria'));
+
+    setActiveCategory(Number.isFinite(categoryId) && categoryId > 0 ? categoryId : 0);
+  }, [search]);
 
   useEffect(() => {
     if (activeCategory === 0) {
@@ -89,17 +99,18 @@ export function Menu() {
       <CategoryMenu>
         {categories.map(category => (
           <CategoryButton key={category.id}
-            $isActiveCategory={category.id === activeCategory}
+            $isActiveCategory={Number(category.id) === activeCategory}
             onClick={() => {
+              const categoryId = Number(category.id);
+              setActiveCategory(categoryId);
               navigate(
                 {
                   pathname: '/cardapio',
-                  search: `?categoria=${category.id}`,
+                  search: categoryId ? `?categoria=${categoryId}` : '',
                 },
                 {
                   replace: true,
                 },
-                setActiveCategory(category.id),
               );
             }}
 

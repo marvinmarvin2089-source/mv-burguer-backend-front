@@ -5,7 +5,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
 
-    background-color: #fff;
+    background-color: ${(props) => props.theme.whit};
 
     border-radius: 12px;
 
@@ -36,14 +36,14 @@ export const Container = styled.div`
 
         p {
             font-size: 18px;
-            color: #ff8c05;
+            color: ${(props) => props.theme.orange};
             font-weight: 700;
             margin-top: 40px;
         }
 
         strong {
             font-size: 22px;
-            color: #363636;
+            color: ${(props) => props.theme.black};
             font-weight: 800;
             line-height: 20px;
 

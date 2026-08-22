@@ -18,7 +18,7 @@ export const Title = styled.h2`
     margin: 70px 0;
     font-size: 24px;
     font-weight: bold;
-    color: #61a120;
+    color: ${(props) => props.theme.gren};
     padding-bottom: 12px;
     position: relative;
     text-align: center;
@@ -31,6 +31,6 @@ export const Title = styled.h2`
         transform: translateX(-50%);
         width: 50px;
         height: 3px;
-        background-color: #61a120;
+        background-color: ${(props) => props.theme.gren};
     }
 `;

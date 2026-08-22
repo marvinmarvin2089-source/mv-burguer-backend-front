@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { toast } from "react-toastify"
 import * as yup from "yup"
+import { useUser } from "../../hooks/UserContext"
 
 import logo from '../../assets/logo1.svg';
 import { Container, LeftContainer, RightContainer, Title, Form, InputContainer, Link } from "./styles";
@@ -11,6 +12,7 @@ import { api } from "../../services/api";
 
 export function Login() {
     const navigate = useNavigate();
+    const { putUserData } = useUser();
 
     const schema = yup
         .object({
@@ -31,7 +33,7 @@ export function Login() {
 
     const onSubmit = async (data) => {
         
-        const { data: { token }, } = await toast.promise(
+        const { data: userData } = await toast.promise(
         api.post('/sessions', {
             email: data.email,
             password: data.password,
@@ -42,7 +44,11 @@ export function Login() {
             success: { 
                  render() { 
                     setTimeout(() => {
-                        navigate('/');
+                        if (userData?.admin) {
+                            navigate('/admin/pedidos');
+                        } else {
+                             navigate('/');
+                        }
                     }, 2000);
                 return 'Seja bem-vindo(a) 👌';
             }, 
@@ -51,7 +57,7 @@ export function Login() {
         
     );
 
-        localStorage.setItem('token', token);
+        putUserData(userData);
         
     };
     return (
