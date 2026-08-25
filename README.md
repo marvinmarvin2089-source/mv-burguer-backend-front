@@ -1,5 +1,7 @@
 # DevBurger — Frontend
 
+![DevBurger](docs/devburger-cover.png)
+
 Aplicação web de uma hamburgueria digital, desenvolvida com React e Vite. O projeto simula a experiência completa de compra: navegação pelo cardápio, filtro por categoria, carrinho persistente, autenticação de usuários, checkout com Stripe e gerenciamento de produtos e pedidos para administradores.
 
 ## Visão geral
