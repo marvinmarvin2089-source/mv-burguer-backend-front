@@ -5,6 +5,7 @@ import { useCart } from '../../hooks/CartContext';
 import { Container, CardImage } from './styles';
 
 import { CartButton } from '../CartButton';
+import { API_URL } from '../../services/api';
 
 
 export function CardProduct({ product }) {
@@ -14,7 +15,7 @@ export function CardProduct({ product }) {
         <Container>
 
             <CardImage
-                src={`http://localhost:3001/products-files/${product.path}`}
+                src={`${API_URL}/products-files/${product.path}`}
                 alt={product.name}
             />
 

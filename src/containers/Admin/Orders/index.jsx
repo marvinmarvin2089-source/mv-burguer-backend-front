@@ -73,7 +73,7 @@ export function Orders() {
       setFilteredOrders(newFilteredOrders);
     }
 
-  }, [orders])
+  }, [orders, activeStatus])
 
   return (
     <>

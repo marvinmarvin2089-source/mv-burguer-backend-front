@@ -54,13 +54,12 @@ export function CheckoutForm() {
                     return {
                         id: product.id,
                         quantity: product.quantity,
-                        price: product.price,
                     };
                 });
 
                 const { status } = await api.post(
                     "/orders",
-                    { products },
+                    { products, paymentIntentId: paymentIntent.id },
                     {
                         validateStatus: () => true,
                     }
@@ -72,7 +71,7 @@ export function CheckoutForm() {
                     clearCart();
 
                     navigate(
-                        `/complete-payment?payment_intent_client_secret=${paymentIntent.client_secret}`
+                        `/complete-payment?payment_intent=${paymentIntent.id}`
                     );
                 } else if (status === 409) {
                     toast.error(

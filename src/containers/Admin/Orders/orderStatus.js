@@ -29,4 +29,14 @@ export const orderStatusOptions = [
     value: 'Entregue',
     label: 'Entregue',
   },
+  {
+    id: 6,
+    value: 'Pagamento aprovado',
+    label: 'Pagamento aprovado',
+  },
+  {
+    id: 7,
+    value: 'Pagamento falhou',
+    label: 'Pagamento falhou',
+  },
 ];

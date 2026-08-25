@@ -6,7 +6,7 @@ import {
      BackButton,
 } from "./styles";
 import { useNavigate } from "react-router-dom";
-import stripePromise from "../../config/stripeConfig";
+import { api } from "../../services/api";
 
 const SuccessIcon = (
     <svg
@@ -116,29 +116,22 @@ export function CompletePayment() {
 
     useEffect(() => {
         async function checkPayment() {
-            const clientSecret = new URLSearchParams(
+            const paymentIntentId = new URLSearchParams(
                 window.location.search
-            ).get("payment_intent_client_secret");
+            ).get("payment_intent");
 
-            if (!clientSecret) {
+            if (!paymentIntentId) {
                 setPaymentStatus("error");
                 return;
             }
 
-            const stripe = await stripePromise;
-
-            const { paymentIntent, error } =
-                await stripe.retrievePaymentIntent(clientSecret);
-
-            if (error) {
-                console.error("ERRO STRIPE:", error);
+            try {
+                const { data } = await api.get(`/payments/${paymentIntentId}`);
+                setPaymentStatus(data.status);
+            } catch (error) {
+                console.error("ERRO AO CONSULTAR PAGAMENTO:", error);
                 setPaymentStatus("error");
-                return;
             }
-
-            console.log("PAYMENT INTENT:", paymentIntent);
-
-            setPaymentStatus(paymentIntent.status);
         }
 
         checkPayment();

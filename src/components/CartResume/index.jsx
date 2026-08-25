@@ -23,6 +23,11 @@ export function CartResume() {
     }, [cartProducts]);
 
     const submitOrder = async () => {
+        if (!cartProducts.length) {
+            toast.info('Adicione pelo menos um produto ao carrinho.');
+            return;
+        }
+
         const products = cartProducts.map((product) => {
             return {
                 id: product.id,
@@ -71,4 +76,4 @@ export function CartResume() {
         <Button onClick={submitOrder}>Finalizar Pedido</Button>
         </div>
     );
-} 
+}

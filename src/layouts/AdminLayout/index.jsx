@@ -4,9 +4,14 @@ import { SideNavAdmin } from '../../components/SideNavAdmin';
 import { Container } from './styles';
 
 export function AdminLayout() {
-    const { admin: isAdmin } = JSON.parse(
-        localStorage.getItem('devburger:userData'),
-    );
+    const storedUserData = localStorage.getItem('devburger:userData');
+    let isAdmin = false;
+
+    try {
+        isAdmin = Boolean(JSON.parse(storedUserData)?.admin);
+    } catch {
+        localStorage.removeItem('devburger:userData');
+    }
 
     return isAdmin ?
         (

@@ -8,21 +8,19 @@ export const CartProvider = ({children}) => {
     const putProductInCart = (product) => {
         const cartIndex = cartProducts.findIndex((prd) => prd.id === product.id);
 
-        let newProductsInCart = [];
+        let newProductsInCart;
 
         if (cartIndex >= 0) {
-            newProductsInCart = [...cartProducts];
-
-            newProductsInCart[cartIndex].quantity += 1;
-
-            setCatProducts(newProductsInCart);
+            newProductsInCart = cartProducts.map((item, index) =>
+                index === cartIndex
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item,
+            );
         } else {
-
-           product.quantity = 1;
-           newProductsInCart = [...cartProducts, product];
-           setCatProducts(newProductsInCart);
+            newProductsInCart = [...cartProducts, { ...product, quantity: 1 }];
         }
 
+        setCatProducts(newProductsInCart);
         updateLocalStorage(newProductsInCart);
     };
 
@@ -48,6 +46,10 @@ export const CartProvider = ({children}) => {
 
     const decreaseProduct = (productId) => {
         const cartIndex = cartProducts.findIndex((prd) => prd.id === productId);
+
+        if (cartIndex < 0) {
+            return;
+        }
 
         if (cartProducts[cartIndex].quantity > 1) {
             const newCart = cartProducts.map((prd) => {
