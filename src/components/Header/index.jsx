@@ -1,4 +1,4 @@
-import { UserCircle, ShoppingCart } from "@phosphor-icons/react";
+import { UserCircleIcon, ShoppingCartIcon } from "@phosphor-icons/react";
 import { useNavigate, useResolvedPath } from "react-router-dom";
 import { useUser } from '../../hooks/UserContext';
 
@@ -35,14 +35,34 @@ export function Header() {
 
             <Options>
                 <Profile>
-                    <UserCircle color='${(props) => props.theme.whit}' size={24} />
-                    <div>
-                        <p>Olá, <span>{userInfo.name}</span></p>
-                        <Logout onClick={logoutUser}>Sair</Logout>
-                    </div>
-                </Profile>
+    <UserCircleIcon size={24} />
+
+    <div>
+        {userInfo?.name ? (
+            <>
+                <p>
+                    Olá, <span>{userInfo.name}</span>
+                </p>
+
+                <Logout onClick={logoutUser}>
+                    Sair
+                </Logout>
+            </>
+        ) : (
+            <>
+                <p>
+                    Olá, <span>Visitante</span>
+                </p>
+
+                <Logout onClick={() => navigate('/login')}>
+                    Entrar
+                </Logout>
+            </>
+        )}
+    </div>
+</Profile>
                  <LinkContainer>
-                    <ShoppingCart color='${(props) => props.theme.whit}' size={24} />
+                    <ShoppingCartIcon size={24} />
                 <HeaderLink to='/carrinho'>Carrinho</HeaderLink>
             
             </LinkContainer>
