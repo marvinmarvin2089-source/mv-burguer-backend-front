@@ -11,23 +11,23 @@ export const orderStatusOptions = [
   },
   {
     id: 2,
-    value: 'Em Preparação',
-    label: 'Em Preparação',
+    value: 'Em preparação',
+    label: 'Em preparação',
   },
   {
     id: 3,
-    value: 'Pedido Pronto',
-    label: 'Pedido Pronto',
+    value: 'A caminho',
+    label: 'A caminho',
   },
   {
     id: 4,
-    value: 'Pedido à Caminho',
-    label: 'Pedido à Caminho',
+    value: 'Concluído',
+    label: 'Concluído',
   },
   {
     id: 5,
-    value: 'Entregue',
-    label: 'Entregue',
+    value: 'Cancelado',
+    label: 'Cancelado',
   },
   {
     id: 6,
