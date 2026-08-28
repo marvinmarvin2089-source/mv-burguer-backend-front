@@ -76,6 +76,7 @@ export function Row({ row, setOrders, orders }) {
             menuPortalTarget={document.body}
           />
         </TableCell>
+        <TableCell>{row.paymentStatus || 'Pendente'}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -134,5 +135,6 @@ Row.propTypes = {
       }),
     ).isRequired,
     status: PropTypes.string.isRequired,
+    paymentStatus: PropTypes.string,
   }).isRequired,
 };

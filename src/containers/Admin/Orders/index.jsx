@@ -38,6 +38,7 @@ export function Orders() {
       orderId: order.id,
       date: order.createdAt,
       status: order.status,
+      paymentStatus: order.payment_status,
       products: order.products,
 
     };
@@ -94,6 +95,7 @@ export function Orders() {
               <TableCell>Cliente</TableCell>
               <TableCell>Data do Pedido</TableCell>
               <TableCell>Status</TableCell>
+              <TableCell>Pagamento</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
