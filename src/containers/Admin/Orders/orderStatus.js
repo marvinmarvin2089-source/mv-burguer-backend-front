@@ -21,8 +21,8 @@ export const orderStatusOptions = [
   },
   {
     id: 4,
-    value: 'Concluído',
-    label: 'Concluído',
+    value: 'Entregue',
+    label: 'Entregue',
   },
   {
     id: 5,

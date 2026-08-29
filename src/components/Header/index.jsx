@@ -29,6 +29,11 @@ export function Header() {
                     <HeaderLink to='/cardapio' $isActive={pathname === '/cardapio'}>
                         Cardápio
                     </HeaderLink>
+                    {userInfo?.token && (
+                        <HeaderLink to='/meus-pedidos' $isActive={pathname === '/meus-pedidos'}>
+                            Meus Pedidos
+                        </HeaderLink>
+                    )}
 
                 </div>
             </Navigation>
