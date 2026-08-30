@@ -11,7 +11,7 @@ export function Cart() {
         <Elements stripe={stripePromise}>
             <Container>
                 <Banner>
-                    <img src={Logo} alt='logo devburger' />
+                    <img src={Logo} alt='Logo MV Burguer' />
                 </Banner>
 
                 <Title>Checkout - Pedido</Title>
