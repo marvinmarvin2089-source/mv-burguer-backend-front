@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 import { Container } from "./styles";
-import { useCart } from "../../../hooks/CartContext";
+import { useCart } from '../../../hooks/UseCart';
 import { api } from "../../../services/api";
 
 export function CheckoutForm() {
@@ -47,7 +47,6 @@ export function CheckoutForm() {
                 return;
             }
 
-            console.log("PAYMENT INTENT:", paymentIntent);
 
             if (paymentIntent?.status === "succeeded") {
                 const products = cartProducts.map((product) => {

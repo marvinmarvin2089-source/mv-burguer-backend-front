@@ -25,7 +25,6 @@ export function Orders() {
       setOrders(data);
       setFilteredOrders(data);
 
-      console.log(data);
     }
 
     loadOrders()
@@ -86,8 +85,20 @@ export function Orders() {
             {status.label}</FilterOption>
         ))}
       </Filter>
-      <TableContainer component={Paper}>
-        <Table aria-label="collapsible table">
+      <TableContainer
+        component={Paper}
+        sx={{
+          width: '100%',
+          overflowX: 'auto',
+          borderRadius: '12px',
+        }}
+      >
+        <Table
+          aria-label="collapsible table"
+          sx={{
+            minWidth: 850,
+          }}
+        >
           <TableHead>
             <TableRow>
               <TableCell />

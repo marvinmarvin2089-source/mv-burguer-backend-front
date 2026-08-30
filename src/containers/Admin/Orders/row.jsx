@@ -81,11 +81,22 @@ export function Row({ row, setOrders, orders }) {
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>
+            <Box
+              sx={{
+                margin: 1,
+                overflowX: 'auto',
+              }}
+            >
               <Typography variant="h6" gutterBottom component="div">
                 Pedido
               </Typography>
-              <Table size="small" aria-label="purchases">
+              <Table
+                size="small"
+                aria-label="purchases"
+                sx={{
+                  minWidth: 600,
+                }}
+              >
                 <TableHead>
                   <TableRow>
                     <TableCell>Quantidade</TableCell>

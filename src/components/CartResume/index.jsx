@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { api } from '../../services/api';
-import { useCart } from '../../hooks/CartContext';
+import { useCart } from '../../hooks/UseCart';
 import { formatPrice } from '../../utils/formatPrice';
 import { Container } from './styles';
 import { Button } from '../Button';

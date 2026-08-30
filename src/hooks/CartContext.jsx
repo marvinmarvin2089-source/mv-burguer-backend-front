@@ -1,12 +1,20 @@
-import { useContext, createContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { CartContext } from './CartContext';
 
-const CartContext = createContext({});
-
-export const CartProvider = ({children}) => {
+export const CartProvider = ({ children }) => {
     const [cartProducts, setCatProducts] = useState([]);
 
+    const updateLocalStorage = (products) => {
+        localStorage.setItem(
+            'devburger:cartInfo',
+            JSON.stringify(products)
+        );
+    };
+
     const putProductInCart = (product) => {
-        const cartIndex = cartProducts.findIndex((prd) => prd.id === product.id);
+        const cartIndex = cartProducts.findIndex(
+            (prd) => prd.id === product.id
+        );
 
         let newProductsInCart;
 
@@ -17,7 +25,10 @@ export const CartProvider = ({children}) => {
                     : item,
             );
         } else {
-            newProductsInCart = [...cartProducts, { ...product, quantity: 1 }];
+            newProductsInCart = [
+                ...cartProducts,
+                { ...product, quantity: 1 },
+            ];
         }
 
         setCatProducts(newProductsInCart);
@@ -27,25 +38,32 @@ export const CartProvider = ({children}) => {
     const clearCart = () => {
         setCatProducts([]);
         updateLocalStorage([]);
-
     };
 
     const deleteProduct = (productId) => {
-        const newCart = cartProducts.filter((prd) => prd.id !== productId);
+        const newCart = cartProducts.filter(
+            (prd) => prd.id !== productId
+        );
+
         setCatProducts(newCart);
         updateLocalStorage(newCart);
     };
 
     const increaseProduct = (productId) => {
         const newCart = cartProducts.map((prd) => {
-            return prd.id === productId ? { ...prd, quantity: prd.quantity + 1 } : prd;
+            return prd.id === productId
+                ? { ...prd, quantity: prd.quantity + 1 }
+                : prd;
         });
+
         setCatProducts(newCart);
         updateLocalStorage(newCart);
     };
 
     const decreaseProduct = (productId) => {
-        const cartIndex = cartProducts.findIndex((prd) => prd.id === productId);
+        const cartIndex = cartProducts.findIndex(
+            (prd) => prd.id === productId
+        );
 
         if (cartIndex < 0) {
             return;
@@ -53,44 +71,40 @@ export const CartProvider = ({children}) => {
 
         if (cartProducts[cartIndex].quantity > 1) {
             const newCart = cartProducts.map((prd) => {
-                return prd.id === productId ? { ...prd, quantity: prd.quantity - 1 } : prd;
+                return prd.id === productId
+                    ? { ...prd, quantity: prd.quantity - 1 }
+                    : prd;
             });
+
             setCatProducts(newCart);
             updateLocalStorage(newCart);
         } else {
             deleteProduct(productId);
         }
-
-    };
-
-     const updateLocalStorage = (products) => {
-        localStorage.setItem('devburger:cartInfo', JSON.stringify(products));
     };
 
     useEffect(() => {
-        const clientCartData = localStorage.getItem('devburger:cartInfo');
+        const clientCartData = localStorage.getItem(
+            'devburger:cartInfo'
+        );
+
         if (clientCartData) {
             setCatProducts(JSON.parse(clientCartData));
         }
-
     }, []);
 
     return (
-        <CartContext.Provider value={{ cartProducts, putProductInCart, clearCart, decreaseProduct, increaseProduct, deleteProduct }}>
+        <CartContext.Provider
+            value={{
+                cartProducts,
+                putProductInCart,
+                clearCart,
+                decreaseProduct,
+                increaseProduct,
+                deleteProduct,
+            }}
+        >
             {children}
         </CartContext.Provider>
-
     );
-
-
-};
-
-export const useCart = () => {
-    const context = useContext(CartContext);
-
-    if (!context) {
-        throw new Error('useCart must be used with a context');
-    };
-
-    return context;
 };

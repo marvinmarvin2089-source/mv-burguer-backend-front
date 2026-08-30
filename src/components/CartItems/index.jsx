@@ -1,5 +1,5 @@
 import TrashIcon from '../../assets/trash.svg';
-import { useCart } from '../../hooks/CartContext';
+import { useCart } from '../../hooks/UseCart';
 import { formatPrice } from '../../utils/formatPrice';
 import { Table } from '../index';
 import { ProductImage, ButtonGroup, EmptyCart, ProductTotalPrice, TrashImage } from './styles';

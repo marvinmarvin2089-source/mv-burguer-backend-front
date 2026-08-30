@@ -129,7 +129,6 @@ export function CompletePayment() {
                 const { data } = await api.get(`/payments/${paymentIntentId}`);
                 setPaymentStatus(data.status);
             } catch (error) {
-                console.error("ERRO AO CONSULTAR PAGAMENTO:", error);
                 setPaymentStatus("error");
             }
         }

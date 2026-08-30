@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useUser } from '../../hooks/UserContext';
+import { useUser } from '../../hooks/UseUser';
 import { api } from '../../services/api';
 import { formatDate } from '../../utils/formatDate';
 import { formatPrice } from '../../utils/formatPrice';
@@ -166,7 +166,6 @@ export function MyOrders() {
       );
       setError(false);
     } catch (requestError) {
-      console.error('Erro ao carregar pedidos:', requestError);
       setError(true);
     } finally {
       if (!silent) {

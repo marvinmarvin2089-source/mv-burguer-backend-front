@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { useCart } from '../../hooks/CartContext';
+import { useCart } from '../../hooks/UseCart';
 
 import { Container, CardImage } from './styles';
 
