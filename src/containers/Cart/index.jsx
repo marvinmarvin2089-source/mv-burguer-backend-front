@@ -1,6 +1,6 @@
 import { Elements } from '@stripe/react-stripe-js'
 
-import Logo from '../../assets/Logo 2.svg'
+import Logo from '../../assets/mv-burguer-logo.png'
 import { CartItems, CartResume } from '../../components'
 import stripePromise from '../../config/stripeConfig'
 

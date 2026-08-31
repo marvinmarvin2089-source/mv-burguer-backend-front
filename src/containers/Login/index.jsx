@@ -5,7 +5,7 @@ import { toast } from "react-toastify"
 import * as yup from "yup"
 import { useUser } from "../../hooks/UseUser"
 
-import logo from '../../assets/logo1.svg';
+import logo from '../../assets/mv-burguer-logo.png';
 import { Container, LeftContainer, RightContainer, Title, Form, InputContainer, Link } from "./styles";
 import { Button } from '../../components/Button';
 import { api } from "../../services/api";

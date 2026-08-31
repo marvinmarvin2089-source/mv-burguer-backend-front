@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import * as yup from "yup";
 
-import logo from '../../assets/logo1.svg';
+import logo from '../../assets/mv-burguer-logo.png';
 import { Button } from '../../components/Button';
 import { api } from "../../services/api";
 import { Container, Form, InputContainer, LeftContainer, RightContainer, Title, Link } from "./styles";
